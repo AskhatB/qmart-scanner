@@ -19,4 +19,4 @@ def main():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="159.65.201.192")
