@@ -2,6 +2,7 @@ import pyzbar.pyzbar as pyzbar
 import base64
 import cv2
 from flask import Flask, request, jsonify, make_response
+from werkzeug.contrib.fixers import ProxyFix
 from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
@@ -22,6 +23,6 @@ def main():
         barcode = object.data.decode('utf-8')
     return barcode
 
-
+app.wsgi_app = ProxyFix(app.wsgi_app)
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
